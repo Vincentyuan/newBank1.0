@@ -237,20 +237,7 @@ public class shortJudgeReport extends workPanel {
 		String yearString = String.valueOf(this.record.getYear());
 
 		// System.out.println("bankname before"+banknameString);
-		result.setBankName(banknameString);
-		result.setYear(yearString);
-		result.setImageName(banknameString + "短期" + "稳定性");
-		try {
-			result.setAbscissa(getYearArray());
-			result.setOrdinate(getOrdinateResult());
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
+		
 		range.setBankName(banknameString);
 		range.setYear(yearString);
 		range.setImageName(banknameString + "短期" + "稳定性排名");
@@ -263,16 +250,34 @@ public class shortJudgeReport extends workPanel {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 
 		grade.setBankName(banknameString);
 		grade.setYear(yearString);
-		grade.setImageName(banknameString + "流动性缺口率等级");
+		grade.setImageName(banknameString + "短期稳定性");
 
 		try {
 			grade.setAbscissa(getYearArray());
 			grade.setOrdinate(getOrdinateGrade());
 		} catch (Exception e) {
 			// TODO: handle exception
+		}
+
+		
+		
+		
+		result.setBankName(banknameString);
+		result.setYear(yearString);
+		result.setImageName(banknameString + "短期" + "流动性缺口率");
+		try {
+			result.setAbscissa(getYearArray());
+			result.setOrdinate(getOrdinateResult());
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 
 		ImageHandle handle = new ImageHandle();
@@ -285,6 +290,7 @@ public class shortJudgeReport extends workPanel {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+
 		// handle.saveImage(range);
 		// show image
 
@@ -436,7 +442,7 @@ public class shortJudgeReport extends workPanel {
 		int total = 0;
 		for (int i = 0; i < fileList.length; i++) {
 			if (fileList[i]
-					.equals(record.getBankname() + "流动性缺口率等级" + ".jpg")
+					.equals(record.getBankname() + "短期流动性缺口率" + ".jpg")
 					|| fileList[i].equals(record.getBankname() + "短期" + "稳定性排名"
 							+ ".jpg")
 					|| fileList[i].equals(record.getBankname() + "短期" + "稳定性"

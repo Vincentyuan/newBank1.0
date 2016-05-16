@@ -43,7 +43,7 @@ public class shortJudgeTendency extends BaseFrame {
 
 		// check whether the image exist
 
-		work[0] = new MyPanel("test/" + bankname + "流动性缺口率等级" + ".jpg");
+		work[0] = new MyPanel("test/" + bankname + "短期流动性缺口率" + ".jpg");
 		work[1] = new MyPanel("test/" + bankname +"短期" + "稳定性排名" + ".jpg");
 		work[2] = new MyPanel("test/" + bankname + "短期" + "稳定性"  + ".jpg");
 

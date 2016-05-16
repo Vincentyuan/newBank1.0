@@ -63,9 +63,10 @@ public class ImageHandle {
 			saveImageMultiJudge(entry);
 		//	System.out.println("计算综合");
 		} else {
-			if (nameString.contains("等级")) {
-				//优良差等
-				saveImageStringAxis(entry);
+			if (nameString.contains("缺口率")) {
+				//流动性缺口率
+				saveImageResultAxis(entry);
+
 				
 			//	System.out.println("计算等级");
 			} else {
@@ -74,8 +75,15 @@ public class ImageHandle {
 					saveImageRangeAxis(entry);
 			//		System.out.println("计算排名");
 				} else {
-					//流动性缺口率
-					saveImageResultAxis(entry);
+					if (nameString.contains("安全边际")) {
+						
+						saveImageResultAxis(entry);
+						
+					}else {
+						//优良差等
+						saveImageStringAxis(entry);
+					}
+					
 				//	System.out.println("计算结果"+entry.getImageName());
 				}
 			}
@@ -174,7 +182,7 @@ public class ImageHandle {
 		XYSeriesCollection xySeriesCollection = new XYSeriesCollection(series);
 
 		JFreeChart jfreechart = ChartFactory.createXYLineChart(nameString,
-				"年份", "存款安全边际率（%）", xySeriesCollection, PlotOrientation.VERTICAL, true,
+				"年份", "流动性缺口率", xySeriesCollection, PlotOrientation.VERTICAL, true,
 				true, false);
 
 		

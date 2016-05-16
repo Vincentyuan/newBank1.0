@@ -46,21 +46,21 @@ public class longJudgeTendency extends BaseFrame {
 		loanMenu= new JMenu("贷款维度");
 		
 
-		rangeDeposit = new JMenuItem("长期稳定性排名（存款维度）");
-		gradeDeposit = new JMenuItem("长期稳定性等级（存款维度）");
+		rangeDeposit = new JMenuItem("长期稳定性排名(存款维度)");
+		gradeDeposit = new JMenuItem("长期稳定性等级(存款维度)");
 		resultDeposit = new JMenuItem("存款安全边际率");
-		rangeLoan = new JMenuItem("长期稳定性排名（贷款维度）");
-		gradeLoan = new JMenuItem("长期稳定性等级（贷款维度）");
+		rangeLoan = new JMenuItem("长期稳定性排名(贷款维度)");
+		gradeLoan = new JMenuItem("长期稳定性等级(贷款维度)");
 		resultLoan = new JMenuItem("贷款安全边际率");
 
 		work = new MyPanel[6];
 		// System.out.println("test/"+bankname+"长期存款归一化值"+".jpg");
 		work[0] = new MyPanel("test/" + bankname + "存款安全边际率" + ".jpg");
 		work[1] = new MyPanel("test/" + bankname + "贷款安全边际率" + ".jpg");
-		work[2] = new MyPanel("test/" + bankname + "长期存款稳定性排名" + ".jpg");
-		work[3] = new MyPanel("test/" + bankname + "长期贷款稳定性排名" + ".jpg");
-		work[4] = new MyPanel("test/" + bankname + "长期存款稳定性等级" + ".jpg");
-		work[5] = new MyPanel("test/" + bankname + "长期贷款稳定性等级" + ".jpg");
+		work[2] = new MyPanel("test/" + bankname + "长期存款稳定性排名(存款维度)" + ".jpg");
+		work[3] = new MyPanel("test/" + bankname + "长期贷款稳定性排名(贷款维度)" + ".jpg");
+		work[4] = new MyPanel("test/" + bankname + "长期存款稳定性等级(存款维度)" + ".jpg");
+		work[5] = new MyPanel("test/" + bankname + "长期贷款稳定性等级(贷款维度)" + ".jpg");
 		
 	
 

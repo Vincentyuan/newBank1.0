@@ -262,7 +262,7 @@ public class longJudgeReport extends workPanel {
 
 		rangeDeposit.setBankName(banknameString);
 		rangeDeposit.setYear(yearString);
-		rangeDeposit.setImageName(banknameString + "长期存款" + "稳定性排名");
+		rangeDeposit.setImageName(banknameString + "长期存款" + "稳定性排名(存款维度)");
 		try {
 			rangeDeposit.setAbscissa(getYearArray());
 			rangeDeposit.setOrdinate(getOrdinateRangeDeposit());
@@ -276,7 +276,7 @@ public class longJudgeReport extends workPanel {
 
 		rangeLoan.setBankName(banknameString);
 		rangeLoan.setYear(yearString);
-		rangeLoan.setImageName(banknameString + "长期贷款" + "稳定性排名");
+		rangeLoan.setImageName(banknameString + "长期贷款" + "稳定性排名(贷款维度)");
 		try {
 			rangeLoan.setAbscissa(getYearArray());
 			rangeLoan.setOrdinate(getOrdinateRangeLoan());
@@ -290,7 +290,7 @@ public class longJudgeReport extends workPanel {
 
 		gradeDeposit.setBankName(banknameString);
 		gradeDeposit.setYear(yearString);
-		gradeDeposit.setImageName(banknameString + "长期存款" + "稳定性等级");
+		gradeDeposit.setImageName(banknameString + "长期存款" + "稳定性等级(存款维度)");
 		try {
 			gradeDeposit.setAbscissa(getYearArray());
 			gradeDeposit.setOrdinate(getOrdinateGradeDeposit());
@@ -301,7 +301,7 @@ public class longJudgeReport extends workPanel {
 
 		gradeLoan.setBankName(banknameString);
 		gradeLoan.setYear(yearString);
-		gradeLoan.setImageName(banknameString + "长期贷款" + "稳定性等级");
+		gradeLoan.setImageName(banknameString + "长期贷款" + "稳定性等级(贷款维度)");
 		try {
 			gradeLoan.setAbscissa(getYearArray());
 			gradeLoan.setOrdinate(getOrdinateGradeLoan());
@@ -504,13 +504,13 @@ public class longJudgeReport extends workPanel {
 			if (fileList[i].equals(record.getBankname() + "贷款安全边际率" + ".jpg")
 					|| fileList[i].equals(record.getBankname() + "存款安全边际率"
 							+ ".jpg")
-					|| fileList[i].equals(record.getBankname() + "长期存款稳定性排名" //ok
+					|| fileList[i].equals(record.getBankname() + "长期存款稳定性排名(存款维度)" //ok
 							+ ".jpg")
-					|| fileList[i].equals(record.getBankname() + "长期贷款稳定性排名"//ok
+					|| fileList[i].equals(record.getBankname() + "长期贷款稳定性排名(贷款维度)"//ok
 							+ ".jpg")
-					|| fileList[i].equals(record.getBankname() + "长期存款稳定性等级"//ok
+					|| fileList[i].equals(record.getBankname() + "长期存款稳定性等级(存款维度)"//ok
 							+ ".jpg")
-					|| fileList[i].equals(record.getBankname() + "长期贷款稳定性等级"//ok
+					|| fileList[i].equals(record.getBankname() + "长期贷款稳定性等级(贷款维度)"//ok
 							+ ".jpg")) {
 
 				total++;
