@@ -64,23 +64,23 @@ public class ImageHandle {
 		//	System.out.println("计算综合");
 		} else {
 			if (nameString.contains("缺口率")) {
-				//流动性缺口率
-				saveImageResultAxis(entry);
+				//流动性缺口率  短期 的图片
+				saveImageResultAxis(entry,"流动性缺口率");
 
 				
 			//	System.out.println("计算等级");
 			} else {
 				if (nameString.contains("排名")) {
-					//每年的排名。
+					//每年的排名。 长期、短期都有
 					saveImageRangeAxis(entry);
 			//		System.out.println("计算排名");
 				} else {
 					if (nameString.contains("安全边际")) {
-						
-						saveImageResultAxis(entry);
+						//长期
+						saveImageResultAxis(entry,"安全边际率（%）");
 						
 					}else {
-						//优良差等
+						//优良差等，等级，长期、短期均有
 						saveImageStringAxis(entry);
 					}
 					
@@ -157,7 +157,7 @@ public class ImageHandle {
 
 	}
 
-	public void saveImageResultAxis(ImageEntry entry) throws IOException {
+	public void saveImageResultAxis(ImageEntry entry,String colName) throws IOException {
 
 		String nameString = entry.getImageName();
 		
@@ -182,22 +182,27 @@ public class ImageHandle {
 		XYSeriesCollection xySeriesCollection = new XYSeriesCollection(series);
 
 		JFreeChart jfreechart = ChartFactory.createXYLineChart(nameString,
-				"年份", "流动性缺口率", xySeriesCollection, PlotOrientation.VERTICAL, true,
+				"年份", colName, xySeriesCollection, PlotOrientation.VERTICAL, true,
 				true, false);
 
 		
 
 		XYPlot plot = jfreechart.getXYPlot();
+		
+		//second axis 
+		ValueAxis yAxis = new SymbolAxis("", new String[] { "差",  "优" });
+		plot.setRangeAxis(1,yAxis);
 
 		XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot
 				.getRenderer();
 		renderer.setBaseItemLabelsVisible(true);
 		
-		ValueAxis vAxis= plot.getRangeAxis();
+		NumberAxis vAxis= (NumberAxis)plot.getRangeAxis();
+		vAxis.setAutoRangeIncludesZero(false);
+		vAxis.setAutoRange(true);
 		vAxis.setAutoTickUnitSelection(true);
 		//vAxis.setLabelAngle(180);
 	//	vAxis.setInverted(true);
-		vAxis.setAutoRange(true);
 		vAxis.setVisible(true);
 		
 		NumberFormat format = NumberFormat.getNumberInstance();
@@ -309,7 +314,7 @@ public class ImageHandle {
 		String[] yStrings = { "差", "中", "良", "较优", "优" };
 		double[] yInt = new double[1];
 		double[] size = new double[1];
-		size[0] = 0.5;
+		size[0] = 0.2;
 		for (int i = 0; i < entity.getAbscissa().length; i++) {
 			// initial xint and yint and size
 
@@ -333,6 +338,7 @@ public class ImageHandle {
 		dataset.addSeries("", dataToImage);
 
 		ValueAxis xAxis = new SymbolAxis("短期评级", xStrings);
+	
 		ValueAxis yAxis = new SymbolAxis("长期评级", yStrings);
 
 		JFreeChart jfreechart = ChartFactory.createBubbleChart(nameString, "",
@@ -340,6 +346,8 @@ public class ImageHandle {
 
 		XYItemRenderer renderer = new XYLineAndShapeRenderer();
 		XYPlot plot = new XYPlot(dataset, xAxis, yAxis, renderer);
+		
+		
 
 		// Jfreechart chart=ChartFactory.createBubbleChart(title, xAxisLabel,
 		// yAxisLabel, dataset, orientation, legend, tooltips, urls)
@@ -357,12 +365,12 @@ public class ImageHandle {
 		numberaxis.setLowerMargin(0.2);
 		numberaxis.setUpperMargin(0.5);
 		NumberAxis numberaxis1 = (NumberAxis) xyplot.getRangeAxis();
+	//	numberaxis1.setRange(0,9);
 		numberaxis1.setLowerMargin(0.8);
 		numberaxis1.setUpperMargin(0.9);
 
-		int width = 560; /* Width of the image */
-		int height = 370; /* Height of the image */
-
+		int width = 460; /* Width of the image */
+		int height = 460; /* Height of the image */
 		File bubbleChart = new File("test/" + entity.getImageName() + ".jpg");
 
 		ChartUtilities.saveChartAsJPEG(bubbleChart, jfreechart, width, height);

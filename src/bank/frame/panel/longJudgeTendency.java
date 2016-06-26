@@ -19,6 +19,7 @@ import org.jfree.ui.RefineryUtilities;
 
 import bank.frame.BaseFrame;
 import bank.frame.MyPanel;
+import bank.util.ImageName;
 
 public class longJudgeTendency extends BaseFrame {
 
@@ -31,6 +32,7 @@ public class longJudgeTendency extends BaseFrame {
 	private String year;
 	private MyPanel[] work; // workpanel的内容panel，不同的按钮更新不同的panel。
 
+	private String [] imageName;
 	public longJudgeTendency() {
 		// TODO Auto-generated constructor stub
 	}
@@ -52,16 +54,21 @@ public class longJudgeTendency extends BaseFrame {
 		rangeLoan = new JMenuItem("长期稳定性排名(贷款维度)");
 		gradeLoan = new JMenuItem("长期稳定性等级(贷款维度)");
 		resultLoan = new JMenuItem("贷款安全边际率");
+		
+		imageName = ImageName.getLongNameArray(bankname);
 
 		work = new MyPanel[6];
 		// System.out.println("test/"+bankname+"长期存款归一化值"+".jpg");
-		work[0] = new MyPanel("test/" + bankname + "存款安全边际率" + ".jpg");
+		/*work[0] = new MyPanel("test/" + bankname + "存款安全边际率" + ".jpg");
 		work[1] = new MyPanel("test/" + bankname + "贷款安全边际率" + ".jpg");
 		work[2] = new MyPanel("test/" + bankname + "长期存款稳定性排名(存款维度)" + ".jpg");
 		work[3] = new MyPanel("test/" + bankname + "长期贷款稳定性排名(贷款维度)" + ".jpg");
 		work[4] = new MyPanel("test/" + bankname + "长期存款稳定性等级(存款维度)" + ".jpg");
 		work[5] = new MyPanel("test/" + bankname + "长期贷款稳定性等级(贷款维度)" + ".jpg");
-		
+		*/
+		for (int i = 0; i < imageName.length; i++) {
+			work[i] = new MyPanel("test/"+imageName[i]+".jpg");
+		}
 	
 
 	}
@@ -95,7 +102,7 @@ public class longJudgeTendency extends BaseFrame {
 		frame.setBounds((d.width - width) / 2, (d.height - height) / 2,
 				700,400);
 		
-		frame.setSize(720, 420);
+		frame.setSize(700, 445);
 		frame.setVisible(true);
 
 		// container.add(panel,BorderLayout.CENTER);
@@ -105,7 +112,7 @@ public class longJudgeTendency extends BaseFrame {
 		// TODO Auto-generated method stub
 		System.out.println("init method has been called");
 	
-		init(2);
+		init(0);
 		addActionListener();
 	}
 
@@ -116,7 +123,7 @@ public class longJudgeTendency extends BaseFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				frame.getContentPane().remove(1);
-				init(0);
+				init(2);
 				frame.revalidate();
 				frame.repaint();
 
@@ -129,7 +136,7 @@ public class longJudgeTendency extends BaseFrame {
 				// TODO Auto-generated method stub
 				frame.getContentPane().remove(1);
 
-				init(1);
+				init(5);
 			}
 		});
 		rangeDeposit.addActionListener(new ActionListener() {
@@ -139,7 +146,7 @@ public class longJudgeTendency extends BaseFrame {
 				// TODO Auto-generated method stub
 				frame.getContentPane().remove(1);
 
-				init(2);
+				init(0);
 			}
 		});
 		rangeLoan.addActionListener(new ActionListener() {
@@ -157,7 +164,7 @@ public class longJudgeTendency extends BaseFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				frame.getContentPane().remove(1);
-				init(4);
+				init(1);
 			}
 		});
 		gradeLoan.addActionListener(new ActionListener() {
@@ -166,7 +173,7 @@ public class longJudgeTendency extends BaseFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				frame.getContentPane().remove(1);
-				init(5);
+				init(4);
 			}
 		});
 

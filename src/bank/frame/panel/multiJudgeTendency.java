@@ -71,12 +71,12 @@ public class multiJudgeTendency extends BaseFrame {
 
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = 700;
-		int height = 600;
+		int height = 700;
 		
 		frame.setBounds((d.width - width) / 2, (d.height - height) / 2,
-				630,400);
+				630,630);
 		
-		frame.setSize(570, 380);
+		frame.setSize(460, 505);
 		frame.setVisible(true);
 
 		// container.add(panel,BorderLayout.CENTER);

@@ -32,6 +32,7 @@ import bank.judge.entity.longJudgeEntity;
 import bank.judge.entity.shortJudgeEntity;
 import bank.util.ImageEntry;
 import bank.util.ImageHandle;
+import bank.util.ImageName;
 
 public class longJudgeReport extends workPanel {
 
@@ -223,7 +224,7 @@ public class longJudgeReport extends workPanel {
 	public void generateTendencyImage() throws Exception {
 
 		// 生成图片，一共6个。result range grade.
-
+		
 		ImageEntry resultDeposit = new ImageEntry();
 		ImageEntry resultLoan = new ImageEntry();
 		ImageEntry rangeDeposit = new ImageEntry();
@@ -233,36 +234,15 @@ public class longJudgeReport extends workPanel {
 
 		String banknameString = record.getBankname();
 		String yearString = String.valueOf(record.getYear());
+		String [] imageName = ImageName.getLongNameArray(banknameString);
 
-		resultDeposit.setBankName(banknameString);
-		resultDeposit.setYear(yearString);
-		resultDeposit.setImageName(banknameString + "存款安全边际率");
-		try {
-			resultDeposit.setAbscissa(getYearArray());
-			resultDeposit.setOrdinate(getOrdinateResultDeposit());
-		} catch (Exception e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
 
-		resultLoan.setBankName(banknameString);
-		resultLoan.setYear(yearString);
-		resultLoan.setImageName(banknameString + "贷款安全边际率");
-		try {
-			resultLoan.setAbscissa(getYearArray());
-			resultLoan.setOrdinate(getOrdinateResultLoan());
-			
-		} catch (SQLException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+
 
 		rangeDeposit.setBankName(banknameString);
 		rangeDeposit.setYear(yearString);
-		rangeDeposit.setImageName(banknameString + "长期存款" + "稳定性排名(存款维度)");
+//		rangeDeposit.setImageName(banknameString + "长期存款" + "稳定性排名(存款维度)");
+		rangeDeposit.setImageName(imageName[0]);
 		try {
 			rangeDeposit.setAbscissa(getYearArray());
 			rangeDeposit.setOrdinate(getOrdinateRangeDeposit());
@@ -274,9 +254,34 @@ public class longJudgeReport extends workPanel {
 			e1.printStackTrace();
 		}
 
+		gradeDeposit.setBankName(banknameString);
+		gradeDeposit.setYear(yearString);
+//		gradeDeposit.setImageName(banknameString + "长期存款" + "稳定性等级(存款维度)");
+		gradeDeposit.setImageName(imageName[1]);
+		try {
+			gradeDeposit.setAbscissa(getYearArray());
+			gradeDeposit.setOrdinate(getOrdinateGradeDeposit());
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
+		resultDeposit.setBankName(banknameString);
+		resultDeposit.setYear(yearString);
+		//resultDeposit.setImageName(banknameString + "存款安全边际率");
+		resultDeposit.setImageName(imageName[2]);
+		try {
+			resultDeposit.setAbscissa(getYearArray());
+			resultDeposit.setOrdinate(getOrdinateResultDeposit());
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
 		rangeLoan.setBankName(banknameString);
 		rangeLoan.setYear(yearString);
-		rangeLoan.setImageName(banknameString + "长期贷款" + "稳定性排名(贷款维度)");
+//		rangeLoan.setImageName(banknameString + "长期贷款" + "稳定性排名(贷款维度)");
+		rangeLoan.setImageName(imageName[3]);
 		try {
 			rangeLoan.setAbscissa(getYearArray());
 			rangeLoan.setOrdinate(getOrdinateRangeLoan());
@@ -288,26 +293,32 @@ public class longJudgeReport extends workPanel {
 			e1.printStackTrace();
 		}
 
-		gradeDeposit.setBankName(banknameString);
-		gradeDeposit.setYear(yearString);
-		gradeDeposit.setImageName(banknameString + "长期存款" + "稳定性等级(存款维度)");
-		try {
-			gradeDeposit.setAbscissa(getYearArray());
-			gradeDeposit.setOrdinate(getOrdinateGradeDeposit());
-		} catch (SQLException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-
 		gradeLoan.setBankName(banknameString);
 		gradeLoan.setYear(yearString);
-		gradeLoan.setImageName(banknameString + "长期贷款" + "稳定性等级(贷款维度)");
+//		gradeLoan.setImageName(banknameString + "长期贷款" + "稳定性等级(贷款维度)");
+		gradeLoan.setImageName(imageName[4]);
 		try {
 			gradeLoan.setAbscissa(getYearArray());
 			gradeLoan.setOrdinate(getOrdinateGradeLoan());
 		} catch (SQLException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
+		}
+		
+		resultLoan.setBankName(banknameString);
+		resultLoan.setYear(yearString);
+//		resultLoan.setImageName(banknameString + "贷款安全边际率");
+		resultLoan.setImageName(imageName[5]);
+		try {
+			resultLoan.setAbscissa(getYearArray());
+			resultLoan.setOrdinate(getOrdinateResultLoan());
+			
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 
 		// JOptionPane.showMessageDialog(null, "Data collection finished");
@@ -501,7 +512,7 @@ public class longJudgeReport extends workPanel {
 		int total = 0;
 		for (int i = 0; i < fileList.length; i++) {
 
-			if (fileList[i].equals(record.getBankname() + "贷款安全边际率" + ".jpg")
+			/*if (fileList[i].equals(record.getBankname() + "贷款安全边际率" + ".jpg")
 					|| fileList[i].equals(record.getBankname() + "存款安全边际率"
 							+ ".jpg")
 					|| fileList[i].equals(record.getBankname() + "长期存款稳定性排名(存款维度)" //ok
@@ -514,6 +525,10 @@ public class longJudgeReport extends workPanel {
 							+ ".jpg")) {
 
 				total++;
+			}*/
+			
+			if(ImageExist(fileList[i])){
+				total++;
 			}
 		}
 		System.out.println("total matched :" +total +" size of files in test :"+fileList.length);
@@ -523,6 +538,18 @@ public class longJudgeReport extends workPanel {
 			return false;
 		}
 
+	}
+	public boolean ImageExist(String targetName){
+		String [] namelist = ImageName.getLongNameArray(record.getBankname());
+		
+		boolean exist = false;
+		for (int i = 0; i < namelist.length; i++) {
+			if ((namelist[i]+".jpg").equals(targetName)) {
+				return true;
+			}
+			
+		}
+		return exist;
 	}
 
 }

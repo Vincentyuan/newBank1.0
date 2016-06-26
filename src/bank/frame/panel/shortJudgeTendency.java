@@ -20,6 +20,7 @@ import org.jfree.ui.RefineryUtilities;
 
 import bank.frame.BaseFrame;
 import bank.frame.MyPanel;
+import bank.util.ImageName;
 
 public class shortJudgeTendency extends BaseFrame {
 
@@ -30,22 +31,29 @@ public class shortJudgeTendency extends BaseFrame {
 	private String year;
 	private MyPanel[] work; // workpanel的内容panel，不同的按钮更新不同的panel。
 
+	private String [] imageName;
+	
 	public shortJudgeTendency(String bankname, String year) {
 		// TODO Auto-generated constructor stub
 		this.bankname = bankname;
 		this.year = year;
 		frame = new JFrame();
 		menuBar = new JMenuBar();
-		range = new JMenuItem("短期稳定性排名");
-		grade = new JMenuItem("短期稳定性");
-		result = new JMenuItem("流动性缺口率");
+		range = new JMenuItem("短期稳定性排名");//0
+		grade = new JMenuItem("短期稳定性等级");//1
+		result = new JMenuItem("流动性缺口率");//2
 		work = new MyPanel[3];
+		imageName = ImageName.getShortNameArray(this.bankname);
 
 		// check whether the image exist
 
-		work[0] = new MyPanel("test/" + bankname + "短期流动性缺口率" + ".jpg");
+		/*work[0] = new MyPanel("test/" + bankname + "短期流动性缺口率" + ".jpg");
 		work[1] = new MyPanel("test/" + bankname +"短期" + "稳定性排名" + ".jpg");
-		work[2] = new MyPanel("test/" + bankname + "短期" + "稳定性"  + ".jpg");
+		work[2] = new MyPanel("test/" + bankname + "短期" + "稳定性"  + ".jpg");*/
+		
+		for (int i = 0; i < imageName.length; i++) {
+			work[i] = new MyPanel("test/"+imageName[i]+".jpg");
+		}
 
 	}
 
@@ -70,7 +78,7 @@ public class shortJudgeTendency extends BaseFrame {
 		//设定位置以及大小
 		frame.setBounds((d.width - width) / 2, (d.height - height) / 2,
 				700,400);
-		
+		frame.setSize(700, 445);
 		frame.setVisible(true);
 	}
 //监听事件
@@ -81,7 +89,7 @@ public class shortJudgeTendency extends BaseFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				frame.getContentPane().remove(1);
-				init(0);
+				init(2);
 				// frame.revalidate();
 				// frame.repaint();
 
@@ -94,7 +102,7 @@ public class shortJudgeTendency extends BaseFrame {
 				// TODO Auto-generated method stub
 				// frame.getContentPane().removeAll();
 				frame.getContentPane().remove(1);
-				init(1);
+				init(0);
 				// frame.revalidate();
 				// frame.repaint();
 			}
@@ -106,7 +114,7 @@ public class shortJudgeTendency extends BaseFrame {
 				// TODO Auto-generated method stub
 				// frame.getContentPane().removeAll();
 				frame.getContentPane().remove(1);
-				init(2);
+				init(1);
 				// frame.revalidate();
 				// frame.repaint();
 
@@ -148,7 +156,7 @@ public class shortJudgeTendency extends BaseFrame {
 	@Override
 	public void init() throws Exception {
 		// TODO Auto-generated method stub
-		init(1);
+		init(0);
 		addActionListener();
 	}
 

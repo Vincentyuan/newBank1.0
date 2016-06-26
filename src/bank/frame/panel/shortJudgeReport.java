@@ -32,6 +32,7 @@ import bank.judge.Judge;
 import bank.judge.entity.shortJudgeEntity;
 import bank.util.ImageEntry;
 import bank.util.ImageHandle;
+import bank.util.ImageName;
 
 public class shortJudgeReport extends workPanel {
 
@@ -235,12 +236,15 @@ public class shortJudgeReport extends workPanel {
 
 		String banknameString = this.record.getBankname();
 		String yearString = String.valueOf(this.record.getYear());
-
+		
+		String [] imageName = ImageName.getShortNameArray(banknameString);
 		// System.out.println("bankname before"+banknameString);
 		
 		range.setBankName(banknameString);
 		range.setYear(yearString);
-		range.setImageName(banknameString + "短期" + "稳定性排名");
+//		range.setImageName(banknameString + "短期" + "稳定性排名");
+		range.setImageName(imageName[0]);
+		
 		try {
 			// range.setOrdinate("");//排名。
 			range.setAbscissa(getYearArray());
@@ -254,7 +258,8 @@ public class shortJudgeReport extends workPanel {
 
 		grade.setBankName(banknameString);
 		grade.setYear(yearString);
-		grade.setImageName(banknameString + "短期稳定性");
+//		grade.setImageName(banknameString + "短期稳定性");
+		grade.setImageName(imageName[1]);
 
 		try {
 			grade.setAbscissa(getYearArray());
@@ -268,7 +273,8 @@ public class shortJudgeReport extends workPanel {
 		
 		result.setBankName(banknameString);
 		result.setYear(yearString);
-		result.setImageName(banknameString + "短期" + "流动性缺口率");
+//		result.setImageName(banknameString + "短期" + "流动性缺口率");
+		result.setImageName(imageName[2]);
 		try {
 			result.setAbscissa(getYearArray());
 			result.setOrdinate(getOrdinateResult());
@@ -441,13 +447,16 @@ public class shortJudgeReport extends workPanel {
 		String[] fileList = file.list();
 		int total = 0;
 		for (int i = 0; i < fileList.length; i++) {
-			if (fileList[i]
+			/*if (fileList[i]
 					.equals(record.getBankname() + "短期流动性缺口率" + ".jpg")
 					|| fileList[i].equals(record.getBankname() + "短期" + "稳定性排名"
 							+ ".jpg")
 					|| fileList[i].equals(record.getBankname() + "短期" + "稳定性"
 							+ ".jpg")) {
 
+				total++;
+			}*/
+			if (ImageExist(fileList[i])) {
 				total++;
 			}
 		}
@@ -458,6 +467,19 @@ public class shortJudgeReport extends workPanel {
 		}
 
 	}
+	public boolean ImageExist(String targetName){
+		String [] namelist = ImageName.getShortNameArray(record.getBankname());
+		
+		boolean exist = false;
+		for (int i = 0; i < namelist.length; i++) {
+			if ((namelist[i]+".jpg").equals(targetName)) {
+				return true;
+			}
+			
+		}
+		return exist;
+	}
+
 
 	public void testGap() throws Exception {
 		shortJudgeEntity entity = new shortJudgeEntity();
