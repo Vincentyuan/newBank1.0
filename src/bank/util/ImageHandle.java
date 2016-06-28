@@ -98,14 +98,16 @@ public class ImageHandle {
 		// JOptionPane.showMessageDialog(null,
 		// "start to generate image for "+nameString);
 
-		/*
-		 * // 创建主题样式 StandardChartTheme mChartTheme = new
-		 * StandardChartTheme("CN"); // 设置标题字体 mChartTheme.setExtraLargeFont(new
-		 * Font("黑体", Font.BOLD, 20)); // 设置轴向字体 mChartTheme.setLargeFont(new
-		 * Font("宋体", Font.CENTER_BASELINE, 15)); // 设置图例字体
-		 * mChartTheme.setRegularFont(new Font("宋体", Font.CENTER_BASELINE, 15));
-		 * // 应用主题样式 ChartFactory.setChartTheme(mChartTheme);
-		 */
+		// 创建主题样式
+		StandardChartTheme mChartTheme = new StandardChartTheme("CN");
+		// 设置标题字体
+		mChartTheme.setExtraLargeFont(new Font("黑体", Font.BOLD, 20));
+		// 设置轴向字体
+		mChartTheme.setLargeFont(new Font("宋体", Font.CENTER_BASELINE, 15));
+		// 设置图例字体
+		mChartTheme.setRegularFont(new Font("宋体", Font.CENTER_BASELINE, 15));
+		// 应用主题样式
+		ChartFactory.setChartTheme(mChartTheme);
 
 		// JOptionPane.showMessageDialog(null,
 		// "the theme inintialed for "+nameString);
@@ -161,14 +163,16 @@ public class ImageHandle {
 
 		String nameString = entry.getImageName();
 
-		/*
-		 * // 创建主题样式 StandardChartTheme mChartTheme = new
-		 * StandardChartTheme("CN"); // 设置标题字体 mChartTheme.setExtraLargeFont(new
-		 * Font("黑体", Font.BOLD, 20)); // 设置轴向字体 mChartTheme.setLargeFont(new
-		 * Font("宋体", Font.CENTER_BASELINE, 15)); // 设置图例字体
-		 * mChartTheme.setRegularFont(new Font("宋体", Font.CENTER_BASELINE, 15));
-		 * // 应用主题样式 ChartFactory.setChartTheme(mChartTheme);
-		 */
+		// 创建主题样式
+		StandardChartTheme mChartTheme = new StandardChartTheme("CN");
+		// 设置标题字体
+		mChartTheme.setExtraLargeFont(new Font("黑体", Font.BOLD, 20));
+		// 设置轴向字体
+		mChartTheme.setLargeFont(new Font("宋体", Font.CENTER_BASELINE, 15));
+		// 设置图例字体
+		mChartTheme.setRegularFont(new Font("宋体", Font.CENTER_BASELINE, 15));
+		// 应用主题样式
+		ChartFactory.setChartTheme(mChartTheme);
 
 		XYSeries series = new XYSeries("");
 
@@ -186,7 +190,7 @@ public class ImageHandle {
 		// jfreechart.setBackgroundPaint(ChartColor.WHITE);
 
 		plot.setOutlineVisible(false);
-		//设置上下的边界区域
+		// 设置上下的边界区域
 		plot.getRangeAxis().setUpperMargin(0.1);
 		plot.getRangeAxis().setUpperBound(1);
 		plot.getRangeAxis().setLowerMargin(0.1);
@@ -201,7 +205,7 @@ public class ImageHandle {
 		ValueAxis yAxis = new SymbolAxis("", new String[] { "差", "", "", "",
 				"", "", "", "优" });
 		plot.setRangeAxis(1, yAxis);
-		
+
 		yAxis.setRange(0, 7);
 
 		XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot
@@ -347,17 +351,16 @@ public class ImageHandle {
 				"", dataset, PlotOrientation.HORIZONTAL, true, true, false);
 
 		XYItemRenderer renderer = new XYLineAndShapeRenderer();
-	//	XYBubbleRenderer renderer2 
-	//	XYPlot plot = new XYPlot(dataset, xAxis, yAxis, renderer);
-
+		// XYBubbleRenderer renderer2
+		// XYPlot plot = new XYPlot(dataset, xAxis, yAxis, renderer);
 
 		XYPlot xyplot = (XYPlot) jfreechart.getPlot();
 
 		// second line in bubble chart
-		
-		XYSeries dataStrings =new XYSeries(""); 
-		dataStrings.add(0,4);  	//	{{"差","优"},{"优","差"}}
-		dataStrings.add(4,0);
+
+		XYSeries dataStrings = new XYSeries("");
+		dataStrings.add(0, 4); // {{"差","优"},{"优","差"}}
+		dataStrings.add(4, 0);
 
 		IntervalXYDataset dataSet2 = new XYSeriesCollection(dataStrings);
 		XYLineAndShapeRenderer renderer1 = new XYLineAndShapeRenderer(true,
@@ -368,7 +371,6 @@ public class ImageHandle {
 		xyplot.setDataset(1, dataSet2);
 		xyplot.setRenderer(1, renderer1);
 
-		
 		xyplot.setDomainAxis(xAxis);
 		xyplot.setRangeAxis(yAxis);
 		xyplot.setForegroundAlpha(0.65F);
@@ -443,7 +445,7 @@ public class ImageHandle {
 				"", dataset, PlotOrientation.HORIZONTAL, true, true, false);
 
 		XYItemRenderer renderer = new XYLineAndShapeRenderer();
-	//	XYBubbleRenderer renderer2 
+		// XYBubbleRenderer renderer2
 		XYPlot plot = new XYPlot(dataset, xAxis, yAxis, renderer);
 
 		// Jfreechart chart=ChartFactory.createBubbleChart(title, xAxisLabel,
@@ -455,11 +457,11 @@ public class ImageHandle {
 		XYPlot xyplot = (XYPlot) jfreechart.getPlot();
 
 		// second line in bubble chart
-		
-		XYSeries dataStrings =new XYSeries(""); 
-		dataStrings.add(1,1);
-		dataStrings.add(0,0);
-	//	{{"差","优"},{"优","差"}}
+
+		XYSeries dataStrings = new XYSeries("");
+		dataStrings.add(1, 1);
+		dataStrings.add(0, 0);
+		// {{"差","优"},{"优","差"}}
 		IntervalXYDataset dataSet2 = new XYSeriesCollection(dataStrings);
 		XYLineAndShapeRenderer renderer1 = new XYLineAndShapeRenderer(true,
 				true);
@@ -469,7 +471,6 @@ public class ImageHandle {
 		plot.setDataset(1, dataSet2);
 		plot.setRenderer(1, renderer1);
 
-		
 		xyplot.setDomainAxis(xAxis);
 		xyplot.setRangeAxis(yAxis);
 		xyplot.setForegroundAlpha(0.65F);
@@ -490,7 +491,7 @@ public class ImageHandle {
 		ChartUtilities.saveChartAsJPEG(bubbleChart, jfreechart, width, height);
 	}
 
-	//abandon backup
+	// abandon backup
 	public void saveImageMultiJudge2(ImageEntry entity) throws IOException {
 
 		String nameString = entity.getImageName();
@@ -557,11 +558,11 @@ public class ImageHandle {
 		XYPlot xyplot = (XYPlot) jfreechart.getPlot();
 
 		// second line in bubble chart
-		
-		XYSeries dataStrings =new XYSeries(""); 
-		dataStrings.add(0,5);
-		dataStrings.add(5,0);
-	//	{{"差","优"},{"优","差"}}
+
+		XYSeries dataStrings = new XYSeries("");
+		dataStrings.add(0, 5);
+		dataStrings.add(5, 0);
+		// {{"差","优"},{"优","差"}}
 		IntervalXYDataset dataSet2 = new XYSeriesCollection(dataStrings);
 		XYLineAndShapeRenderer renderer1 = new XYLineAndShapeRenderer(false,
 				true);
@@ -571,7 +572,6 @@ public class ImageHandle {
 		plot.setDataset(1, dataSet2);
 		plot.setRenderer(1, renderer1);
 
-		
 		xyplot.setDomainAxis(xAxis);
 		xyplot.setRangeAxis(yAxis);
 		xyplot.setForegroundAlpha(0.65F);
@@ -592,9 +592,6 @@ public class ImageHandle {
 		ChartUtilities.saveChartAsJPEG(bubbleChart, jfreechart, width, height);
 	}
 
-	
-	
-	
 	// abandon
 	public void saveImageNumberAxis1(ImageEntry entry) throws IOException {
 		String nameString = entry.getImageName();
