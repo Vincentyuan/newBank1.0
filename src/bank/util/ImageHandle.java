@@ -103,7 +103,7 @@ public class ImageHandle {
 
 		String nameString = entry.getImageName();
 
-		setCharset();
+//		setCharset();
 		int[] xAxisDataInt = entry.getAbscissa();
 		String[] yearStrings = new String[xAxisDataInt.length];
 		double[] yearAxisDouble = new double[xAxisDataInt.length];
@@ -129,6 +129,7 @@ public class ImageHandle {
 
 		JFreeChart jfreechart = new JFreeChart(nameString, new Font("Tahoma",
 				0, 18), plot, true);
+		jfreechart.getTitle().setFont(new Font("宋体", Font.BOLD,12));
 
 		outputImage(jfreechart, nameString, 700, 400);
 
@@ -138,8 +139,8 @@ public class ImageHandle {
 			throws IOException {
 
 		String nameString = entry.getImageName();
-
-		setCharset();
+// used for the old version
+//		setCharset(); 
 
 		int[] xAxisDataInt = entry.getAbscissa();
 		String[] yearStrings = new String[xAxisDataInt.length];
@@ -181,6 +182,7 @@ public class ImageHandle {
 		
 		JFreeChart jfreechart = new JFreeChart(nameString, new Font("Tahoma",
 				0, 18), plot, true);
+		jfreechart.getTitle().setFont(new Font("宋体", Font.BOLD,12));
 
 		outputImage(jfreechart, nameString, 700, 400);
 	}
@@ -300,7 +302,7 @@ public class ImageHandle {
 		numberaxis1.setLowerMargin(0.8);
 		numberaxis1.setUpperMargin(0.9);
 
-		int width = 460; /* Width of the image */
+		int width = 520; /* Width of the image */
 		int height = 460; /* Height of the image */
 
 		outputImage(jfreechart, entity.getImageName(), width, height);
@@ -343,6 +345,7 @@ public class ImageHandle {
 //		plot.setRangeGridlinesVisible(false);
 	}
 
+	//set the old version create image by chartfactory
 	public void setCharset() {
 
 		// 创建主题样式

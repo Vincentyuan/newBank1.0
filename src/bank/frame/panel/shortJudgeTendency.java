@@ -71,14 +71,14 @@ public class shortJudgeTendency extends BaseFrame {
 		frame.pack();
 		RefineryUtilities.centerFrameOnScreen(frame);
 
-		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = 700;
-		int height = 600;
-		
-		//设定位置以及大小
-		frame.setBounds((d.width - width) / 2, (d.height - height) / 2,
-				700,400);
-		frame.setSize(700, 445);
+//		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+//		int width = 700;
+//		int height = 600;
+//		
+//		//设定位置以及大小
+//		frame.setBounds((d.width - width) / 2, (d.height - height) / 2,
+//				700,400);
+		frame.setSize(720, 445);
 		frame.setVisible(true);
 	}
 //监听事件

@@ -95,14 +95,14 @@ public class longJudgeTendency extends BaseFrame {
 		frame.pack();
 		RefineryUtilities.centerFrameOnScreen(frame);
 
-		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = 700;
-		int height = 600;
+//		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+//		int width = 700;
+//		int height = 600;
+//		
+//		frame.setBounds((d.width - width) / 2, (d.height - height) / 2,
+//				700,400);
 		
-		frame.setBounds((d.width - width) / 2, (d.height - height) / 2,
-				700,400);
-		
-		frame.setSize(700, 445);
+		frame.setSize(720, 445);
 		frame.setVisible(true);
 
 		// container.add(panel,BorderLayout.CENTER);
