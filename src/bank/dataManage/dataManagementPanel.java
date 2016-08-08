@@ -108,13 +108,13 @@ public class dataManagementPanel extends workPanel {
 
 		body.setLayout(new BorderLayout());
 		body.add(toolbar, BorderLayout.NORTH);
-	//	toolbar.add(add);
-	//	toolbar.add(save);
+		// toolbar.add(add);
+		// toolbar.add(save);
 		toolbar.add(delete);
 
 		body.add(toolbar, BorderLayout.NORTH);
-	//	toolbar.add(add); //表格直接添加。
-	//	toolbar.add(save);//表格修改保存。暂时注销
+		// toolbar.add(add); //表格直接添加。
+		// toolbar.add(save);//表格修改保存。暂时注销
 		toolbar.add(delete);
 
 		body.add(jScrollPane, BorderLayout.CENTER);
@@ -197,11 +197,11 @@ public class dataManagementPanel extends workPanel {
 					if (currentTable == null) {
 						JOptionPane.showMessageDialog(null, "请先选择数据表");
 					} else {
-				//		System.out.println(jTable.getSelectedRows().length);
+						// System.out.println(jTable.getSelectedRows().length);
 						try {
 							if (jTable.getSelectedRows().length > 0) {
 								deleteRows(jTable.getName());
-						//		System.out.println(jTable.getName());
+								// System.out.println(jTable.getName());
 							} else {
 								JOptionPane.showMessageDialog(null,
 										"您还没有选择要删除的数据");
@@ -228,8 +228,8 @@ public class dataManagementPanel extends workPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ImportData importData=new ImportData();
-				
+				ImportData importData = new ImportData();
+
 				try {
 					importData.saveData();
 				} catch (IndexOutOfBoundsException e1) {
@@ -245,8 +245,6 @@ public class dataManagementPanel extends workPanel {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				
 
 			}
 		});
@@ -323,9 +321,8 @@ public class dataManagementPanel extends workPanel {
 
 			public void mousePressed(MouseEvent evt) {
 				if (evt.isPopupTrigger()) {
-					// 取得右键点击所在行
-					int row = evt.getY() / jTable.getRowHeight();
-			//		System.out.println(row);
+
+					// System.out.println(row);
 
 					JPopupMenu pop = new JPopupMenu();
 					JMenuItem menuItem = new JMenuItem("设为管理员");
@@ -335,6 +332,8 @@ public class dataManagementPanel extends workPanel {
 
 					pop.show(evt.getComponent(), evt.getX(), evt.getY());
 
+					// 取得右键点击所在行
+					int row = evt.getY() / jTable.getRowHeight();
 					String userName = (String) jTable.getModel().getValueAt(
 							row, 1);
 
@@ -345,6 +344,17 @@ public class dataManagementPanel extends workPanel {
 				}
 			}
 
+			public void mouseClicked(MouseEvent e) {
+
+				if (e.getClickCount() == 2) { // When double click JList
+					// 取得右键点击所在行
+					int row = e.getY() / jTable.getRowHeight();
+					String userName = (String) jTable.getModel().getValueAt(
+							row, 1);
+					int priority = (int) jTable.getModel().getValueAt(row, 3);
+					changeUserAuthorization(userName, priority);
+				}
+			}
 		});
 		jScrollPane.setViewportView(jTable);
 	}
@@ -505,7 +515,7 @@ public class dataManagementPanel extends workPanel {
 				sql = from + tableName + where + "name = '" + bankName + "'";
 
 				bankDao.delete(sql);
-				
+
 			}
 			showTables(currentTable);
 			break;
@@ -513,12 +523,12 @@ public class dataManagementPanel extends workPanel {
 			YearDao yearDao = new YearDaoImpl();
 			for (int i = 0; i < selection.length; i++) {
 				selection[i] = jTable.convertRowIndexToModel(selection[i]);
-				String year = String.valueOf( jTable.getModel().getValueAt(
+				String year = String.valueOf(jTable.getModel().getValueAt(
 						selection[i], 1));
 				sql = from + tableName + where + "year = '" + year + "'";
 
 				yearDao.delete(sql);
-				
+
 			}
 			showTables(currentTable);
 			break;
@@ -536,7 +546,7 @@ public class dataManagementPanel extends workPanel {
 				sql = from + tableName + where + "Bank_id='" + bank_id + "' "
 						+ and + "Year_id='" + year_id + "'";
 				longDataDao.delete(sql);
-				
+
 			}
 			showTables(currentTable);
 			break;
@@ -549,7 +559,6 @@ public class dataManagementPanel extends workPanel {
 
 				sql = from + tableName + where + "name='" + name + "'";
 				dRateDao.delete(sql);
-				
 
 			}
 			showTables(currentTable);
@@ -566,7 +575,7 @@ public class dataManagementPanel extends workPanel {
 				sql = from + tableName + where + "bid='" + bid + "' " + and
 						+ "year='" + year + "'";
 				shortDataDao.delete(sql);
-				
+
 			}
 			showTables(currentTable);
 			break;
@@ -578,7 +587,7 @@ public class dataManagementPanel extends workPanel {
 						1);
 				sql = from + tableName + where + "year='" + year_id + "'";
 				nat.delete(sql);
-				
+
 			}
 			showTables(currentTable);
 			break;
@@ -588,17 +597,15 @@ public class dataManagementPanel extends workPanel {
 				selection[i] = jTable.convertRowIndexToModel(selection[i]);
 				String userName = (String) jTable.getModel().getValueAt(
 						selection[i], 1);
-				
+
 				if (!userName.equals("root")) {
 					sql = from + tableName + where + "userName = '" + userName
 							+ "'";
 					tmp.delete(sql);
-				}
-				else {
+				} else {
 					JOptionPane.showMessageDialog(null, "无法删除root用户");
 				}
-				
-				
+
 			}
 			showTables(currentTable);
 			break;
@@ -616,7 +623,7 @@ public class dataManagementPanel extends workPanel {
 						+ "bankname='" + bankName + "' " + and + "year='"
 						+ year + "'";
 				recordDao.delete(sql);
-				
+
 			}
 			showTables(currentTable);
 			break;
@@ -638,6 +645,55 @@ public class dataManagementPanel extends workPanel {
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
 		// new dataManagementPanel().init();
+	}
+
+	public void changeUserAuthorization(String usernameString, int priority) {
+		UserDao userDao = new UserDaoImpl();
+		if (usernameString.equals("root")) {
+			JOptionPane.showMessageDialog(null, "root账户不允许修改权限");
+		} else {
+
+			if (priority == 0) {
+				String sqlString = "update user set authority=1 where userName='"
+						+ usernameString + "'";
+
+				try {
+					userDao.setAsAdminister(sqlString);
+					try {
+						showTables(currentTable);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					 JOptionPane.showMessageDialog(null,
+					 usernameString+"已被设为管理员");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			} else {
+				String sqlString = "update user set authority=0 where userName='"
+						+ usernameString + "'";
+
+				try {
+					userDao.setAsAdminister(sqlString);
+					try {
+						showTables(currentTable);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					 JOptionPane.showMessageDialog(null,
+					 usernameString+"已被取消管理员权限");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "更新失败");
+				}
+			}
+
+		}
+
 	}
 
 	class setAdministerListener implements ActionListener {

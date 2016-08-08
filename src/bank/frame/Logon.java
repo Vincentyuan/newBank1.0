@@ -6,6 +6,7 @@ import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.SQLException;
@@ -29,7 +30,7 @@ public class Logon extends BaseFrame {
 	private JTextField userName;
 	private JPasswordField password;
 	private JLabel user, passwd;
-	
+
 	private mKeyListener m1;
 
 	private JButton submit, register;
@@ -104,47 +105,16 @@ public class Logon extends BaseFrame {
 
 	private void addListener() {
 		// TODO Auto-generated method stub
-		
+
 		submit.addKeyListener(m1);
-		
+
 		submit.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				// 判断并且跳转
-				UserDao user = new UserDaoImpl();
-				try {
-					if (user.checkExist(getName())) {
-						try {
-							boolean checkResult = user.checkPassword(getName(),
-									getPasswd());
-							if (checkResult) {
-								context.setUserName(getName());
-								loadMainFrame();
-								setUnVisible();
-								// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-								// System.exit(NORMAL);;
-							} else {
-								JOptionPane.showMessageDialog(null, "密码不正确");
-							}
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "用户名不存在");
-					}
-				} catch (HeadlessException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				// call function to process event
+				submitFunction();
 			}
 		});
 
@@ -163,6 +133,55 @@ public class Logon extends BaseFrame {
 				setUnVisible();
 			}
 		});
+
+		password.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				// System.out.println(new String(pwf.getPassword()));
+
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					// call submit function.
+					submitFunction();
+				}
+			}
+		});
+
+	}
+
+	public void submitFunction() {
+		// 判断并且跳转
+		UserDao user = new UserDaoImpl();
+		try {
+			if (user.checkExist(getName())) {
+				try {
+					boolean checkResult = user.checkPassword(getName(),
+							getPasswd());
+					if (checkResult) {
+						context.setUserName(getName());
+						loadMainFrame();
+						setUnVisible();
+						// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						// System.exit(NORMAL);;
+					} else {
+						JOptionPane.showMessageDialog(null, "密码不正确");
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "用户名不存在");
+			}
+		} catch (HeadlessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 	}
 
 	public String getName() {
