@@ -4,3 +4,9 @@ test/*
 test2/*
 *.zip/
 *.jar/
+
+*.class
+
+*.class
+
+*.jpg
