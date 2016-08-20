@@ -143,7 +143,7 @@ public class ImageHandle {
 //		setCharset(); 
 
 		int[] xAxisDataInt = entry.getAbscissa();
-		String[] yearStrings = new String[xAxisDataInt.length];
+		String[] yearStrings = new String[xAxisDataInt.length+1];
 		double[] yearAxisDouble = new double[xAxisDataInt.length];
 
 
@@ -153,10 +153,14 @@ public class ImageHandle {
 			yearAxisDouble[i] = i;
 			
 		}
+		// add a new year to ensure the value shows 
+		yearStrings[xAxisDataInt.length] = String.valueOf(xAxisDataInt[xAxisDataInt.length-1]+1);
 
 		DefaultXYDataset dataset = new DefaultXYDataset();
 		dataset.addSeries("",
 				new double[][] { yearAxisDouble, entry.getOrdinate() });
+		
+		
 		ValueAxis xValueAxis = new SymbolAxis("Äê·Ý", yearStrings);
 		ValueAxis yValueAxis = new NumberAxis(colName);
 		

@@ -48,6 +48,7 @@ public class shortJudgeReport extends workPanel {
 	private inputData userInputData;
 
 	private shortJudgeTendency showImage;
+	
 
 	public shortJudgeReport(JudgeRecord record, inputData userInputData) {
 		// TODO Auto-generated constructor stub
